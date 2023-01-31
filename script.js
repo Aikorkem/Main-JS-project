@@ -18,7 +18,9 @@ function computerPlay(){
 
 const playerSelection = "Rock";
 const computerSelection = computerPlay();
-console.log(computerResult);
+
+//check whether computerPLay works
+console.log(computerSelection);
 
 function playRound(playerSelection, computerSelection){
 
