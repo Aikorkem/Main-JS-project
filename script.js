@@ -26,7 +26,3 @@ function playRound(playerSelection, computerSelection){
 }
 
 //console.log(playRound(playerSelection,computerSelection));
-
-function game() {
-    //loop of 5 rounds
-}
