@@ -2,8 +2,8 @@ const possibleOptions = ["rock", "paper", "scissors"];
 const winner = game();
 
 function computerPlay(){
-    const randomNumber = Math.floor(Math.random()*3);
-    return possibleOptions[randomNumber];
+    const computerRandomSelection = possibleOptions[Math.floor(Math.random() * 3)];
+    return computerRandomSelection;
 }
 
 function playRound(playerSelection, computerSelection){
@@ -27,7 +27,7 @@ function playRound(playerSelection, computerSelection){
             alert(`You Lose! ${computerSelection} beats ${playerChoice}!`);
             return `You Lose! ${computerSelection} beats ${playerChoice}!`;
         case "draw":
-            alert("Draw!");
+            alert(`Draw! ${playerChoice} = ${computerSelection}`);
             return "Draw";
         default:
             return "Error occurred";
@@ -41,12 +41,13 @@ function game(){
     alert("Let's start a game!");
 
     for(let i=0; i<5; i++){
-        const playerSelection = window.prompt("Please enter 'rock' or 'paper' or 'scissors'");
+        alert(`Round ${i+1}\nPlayer = ${userCount} x Computer = ${computerCount}`);
+        let playerSelection = window.prompt(`Please, type your choise:\n - Rock\n - Paper\n - Scissors`);
         let inputCheck = playerSelection.replace(/\s*/g, "");
 
         if(/\b(rock|paper|scissors)\b/i.test(inputCheck) && /(rock|paper|scissors)/i.test(playerSelection)){
             playerSelection = inputCheck;
-            const computerSelection = computerPlay();
+            let computerSelection = computerPlay();
             console.log(`Computer chose "${computerSelection}". You chose "${playerSelection}"`);
             playResult = playRound(playerSelection, computerSelection);
             console.log(playResult);
@@ -71,15 +72,16 @@ function game(){
             alert("Invalid input");
         }
     }
-   
-    if(userCount > computerCount){
-        console.log("You Won the Game!");
-    }
-    else if(userCount < computerCount) {
-        console.log("Computer Won the Game!");
-    }
-    else {
-        console.log("Game draw!");
-    }
 
+    finalResult(userCount, computerCount);
+}
+
+function finalResult(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        alert(`Final result: You are the Winner!`);
+    } else if (playerScore < computerScore ) {
+        alert(`Final result: You Lost! Try again!`);
+    } else {
+        alert(`Final result: Draw!`);
+    }
 }
