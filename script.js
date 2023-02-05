@@ -1,7 +1,5 @@
-let userCount = 0;
-let computerCount = 0;
-const winner = game();
 const possibleOptions = ["rock", "paper", "scissors"];
+const winner = game();
 
 function computerPlay(){
     const randomNumber = Math.floor(Math.random()*3);
@@ -9,7 +7,7 @@ function computerPlay(){
 }
 
 function playRound(playerSelection, computerSelection){
-    
+
     const resultOptions = [
         ["draw", "player", "computer"],
         ["computer", "draw", "player"],
@@ -23,12 +21,13 @@ function playRound(playerSelection, computerSelection){
 
     switch(roundResult){
         case "player":
-            playerPoints++;
+            alert(`You Win! ${playerChoice} beats ${computerSelection}!`);
             return `You Win! ${playerChoice} beats ${computerSelection}!`;
         case "computer":
-            computerPoints++;
+            alert(`You Lose! ${computerSelection} beats ${playerChoice}!`);
             return `You Lose! ${computerSelection} beats ${playerChoice}!`;
         case "draw":
+            alert("Draw!");
             return "Draw";
         default:
             return "Error occurred";
@@ -37,24 +36,39 @@ function playRound(playerSelection, computerSelection){
 
 function game(){
     let playResult = "";
+    let userCount = 0;
+    let computerCount = 0;
+    alert("Let's start a game!");
+
     for(let i=0; i<5; i++){
-        const playerSelection = window.prompt("To start the play please enter 'rock' or 'paper' or 'scissors'");
-        const computerSelection = computerPlay();
-        playResult = playRound(playerSelection, computerSelection);
-        console.log(playResult)
-        if( playResult.includes("You Win")){
-            userCount = userCount + 1;
-            console.log("Your score: ",userCount);
-            console.log("Computer score: ",computerCount);
-        }
-        else if( playResult.includes("You Lose")) {
-            computerCount = computerCount + 1;
-            console.log("Computer score: ",computerCount);
-            console.log("Your score: ",userCount);
-        }
-        else {
-              i == i-1;
-              console.log("Invalid input");
+        const playerSelection = window.prompt("Please enter 'rock' or 'paper' or 'scissors'");
+        let inputCheck = playerSelection.replace(/\s*/g, "");
+
+        if(/\b(rock|paper|scissors)\b/i.test(inputCheck) && /(rock|paper|scissors)/i.test(playerSelection)){
+            playerSelection = inputCheck;
+            const computerSelection = computerPlay();
+            console.log(`Computer chose "${computerSelection}". You chose "${playerSelection}"`);
+            playResult = playRound(playerSelection, computerSelection);
+            console.log(playResult);
+
+            if( playResult.includes("You Win")){
+                userCount++;
+                console.log("Your score: ",userCount);
+                console.log("Computer score: ",computerCount);
+            }
+            else if( playResult.includes("You Lose")) {
+                computerCount++;
+                console.log("Computer score: ",computerCount);
+                console.log("Your score: ",userCount);
+            }else if( playResult.includes("Draw")) {
+                console.log("Computer score: ",computerCount);
+                console.log("Your score: ",userCount);
+            }else{
+                console.log("Error");
+            }
+        }else{
+            i--;
+            alert("Invalid input");
         }
     }
    
@@ -64,7 +78,7 @@ function game(){
     else if(userCount < computerCount) {
         console.log("Computer Won the Game!");
     }
-    else if (userCount === computerCount){
+    else {
         console.log("Game draw!");
     }
 
