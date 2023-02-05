@@ -9,25 +9,30 @@ function computerPlay(){
 }
 
 function playRound(playerSelection, computerSelection){
+    
+    const resultOptions = [
+        ["draw", "player", "computer"],
+        ["computer", "draw", "player"],
+        ["player", "computer", "draw"]
+    ];
 
-    // playerSelection = playerSelection.toLowerCase();
-    // console.log(playerSelection);
-    // console.log(computerSelection);
-    // if(playerSelection.equals(computerPlay)){
+    let playerChoice = playerSelection.toLowerCase();
+    let computerIndex = possibleOptions.indexOf(computerSelection);
+    let playerIndex = possibleOptions.indexOf(playerChoice);
+    let roundResult = resultOptions[computerIndex][playerIndex];
 
-    // }  // logic when both the values are same
-    // let randomNumber = Math.floor(Math.random()*2);
-    // switch(randomNumber){
-    //     case 0:
-    //         return "You Lose! Computer Beats User";
-    //         break;
-    //     case 1:
-    //         return "You Win! User beats Computer";
-    //         break;
-    //     default:
-    //         return "Something went wrong";
-    // } 
-    // hardcoded this function so that game function can catch the return value from this function
+    switch(roundResult){
+        case "player":
+            playerPoints++;
+            return `You Win! ${playerChoice} beats ${computerSelection}!`;
+        case "computer":
+            computerPoints++;
+            return `You Lose! ${computerSelection} beats ${playerChoice}!`;
+        case "draw":
+            return "Draw";
+        default:
+            return "Error occurred";
+    }  
 }
 
 function game(){
