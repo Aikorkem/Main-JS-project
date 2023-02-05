@@ -1,6 +1,5 @@
 const computerPlay = () => {
     let randomNumber = Math.floor(Math.random()*3);
-    console.log(randomNumber);
     switch (randomNumber) {
         case 0:
             return "Rock";
@@ -22,11 +21,12 @@ const getPlayerChoice = () => {
         console.log("Error, please type: rock, paper and scissors");
     }
 };
-const game= () =>{
+const game = () =>{
     let playerScore = 0;
     let computerScore = 0;
     alert("Let's start the game");
     for(let i = 0; i<5; i++){
+        console.log("Playing Round: ",i+1);
         const playRound = (playerSelection, computerSelection) => {
             if (playerSelection === computerSelection) {
                 return "Tie the game";
@@ -61,6 +61,10 @@ const game= () =>{
                     return "You lose! Scissors beats Paper";
                 }
             }
+            else{
+                i--;
+                return "Invaild Input";
+            }
         };  
         const playerChoice = getPlayerChoice();
         const computerChoice = computerPlay().toLowerCase(); 
@@ -78,6 +82,5 @@ const game= () =>{
     else{
         alert("Draw the game");
     }
-
 };
 game();
