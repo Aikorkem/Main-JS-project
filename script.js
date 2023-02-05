@@ -1,30 +1,36 @@
+const possibleOptions = ["rock", "paper", "scissors"];
+let playerPoints = 0,
+    computerPoints = 0;
+
 function computerPlay(){
-    //randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’
-    let randomNumber = Math.floor(Math.random()*10/4);
-    switch(randomNumber){
-        case 0:
-            return "Rock";
-            break;
-        case 1:
-            return "Paper";
-            break;
-        case 2:
-            return "Scissors";
-            break;
-        default:
-            return "Something went wrong";
-    }
+    const randomNumber = Math.floor(Math.random()*3);
+    return possibleOptions[randomNumber];
 }
-
-const playerSelection = "Rock";
-const computerSelection = computerPlay();
-
-//check whether computerPLay works
-console.log(computerSelection);
 
 function playRound(playerSelection, computerSelection){
 
-    //return a string that declares the winner
-}
+    const resultOptions = [
+        ["draw", "player", "computer"],
+        ["computer", "draw", "player"],
+        ["player", "computer", "draw"]
+    ];
 
-//console.log(playRound(playerSelection,computerSelection));
+    let playerChoice = playerSelection.toLowerCase();
+    let computerIndex = possibleOptions.indexOf(computerSelection);
+    let playerIndex = possibleOptions.indexOf(playerChoice);
+    let roundResult = resultOptions[computerIndex][playerIndex];
+
+    switch(roundResult){
+        case "player":
+            playerPoints++;
+            return `You Win! ${playerChoice} beats ${computerSelection}!`;
+        case "computer":
+            computerPoints++;
+            return `You Lose! ${computerSelection} beats ${playerChoice}!`;
+        case "draw":
+            return "Draw";
+        default:
+            return "Error occurred";
+    }  
+
+}
