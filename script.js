@@ -1,21 +1,11 @@
 let userCount = 0;
-let computerCount =0;
+let computerCount = 0;
 const winner = game();
+const possibleOptions = ["rock", "paper", "scissors"];
+
 function computerPlay(){
-    let randomNumber = Math.floor(Math.random()*3);
-    switch(randomNumber){
-        case 0:
-            return "Rock";
-            break;
-        case 1:
-            return "Paper";
-            break;
-        case 2:
-            return "Scissors";
-            break;
-        default:
-            return "Something went wrong";
-    }
+    const randomNumber = Math.floor(Math.random()*3);
+    return possibleOptions[randomNumber];
 }
 
 function playRound(playerSelection, computerSelection){
