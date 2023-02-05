@@ -1,8 +1,6 @@
-//rock beats scissors
-//scissors beats paper
-//paper beats rock
 const computerPlay = () => {
     let randomNumber = Math.floor(Math.random()*3);
+    console.log(randomNumber);
     switch (randomNumber) {
         case 0:
             return "Rock";
@@ -15,7 +13,7 @@ const computerPlay = () => {
     }
 };
 const getPlayerChoice = () => {
-    let userInput = prompt("Enter Rock, Paper and Scissors");
+    let userInput = prompt("Enter your choice Rock, Paper and Scissors");
     userInput = userInput.toLowerCase();
     if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
         return userInput;
@@ -27,15 +25,14 @@ const getPlayerChoice = () => {
 const game= () =>{
     let playerScore = 0;
     let computerScore = 0;
-  
-
+    alert("Let's start the game");
     for(let i = 0; i<5; i++){
         const playRound = (playerSelection, computerSelection) => {
             if (playerSelection === computerSelection) {
-                return "tie the game";
+                return "Tie the game";
             }
             else if (playerSelection == "rock") {
-                if (computerSelection == "Scissors") {
+                if (computerSelection == "scissors") {
                     playerScore++;
                     return "You win! Rock beats Scissors";
                 }
@@ -45,7 +42,7 @@ const game= () =>{
                 }
             }
             else if (playerSelection == "scissors") {
-                if (computerSelection == "Paper") {
+                if (computerSelection == "paper") {
                     playerScore++;
                     return "You win! Scissors beats Paper";
                 }
@@ -55,7 +52,7 @@ const game= () =>{
                 }
             }
             else if (playerSelection == "paper") {
-                if (computerSelection == "Rock") {
+                if (computerSelection == "rock") {
                     playerScore++;
                     return "You win! Paper beats Rock";
                 }
@@ -66,20 +63,20 @@ const game= () =>{
             }
         };  
         const playerChoice = getPlayerChoice();
-        const computerChoice = computerPlay(); 
+        const computerChoice = computerPlay().toLowerCase(); 
+        console.log("Player choice: ", playerChoice);
+        console.log("Computer choice: ", computerChoice);
         console.log(playRound(playerChoice, computerChoice));
     }
-    let playerScoreBoard=playerScore;
-    let computerScoreBoard = computerScore;
-    console.log(playerScoreBoard,computerScoreBoard);
-    if(playerScoreBoard > computerScoreBoard){
+    console.log(`Total Player score: ${playerScore} and Computer score: ${computerScore}`);
+    if(playerScore > computerScore){
         alert("You won the game");
     }
-    else if(playerScoreBoard < computerScoreBoard){
+    else if(playerScore < computerScore){
         alert("You lose the game");
     }
     else{
-        alert("Tie the game");
+        alert("Draw the game");
     }
 
 };
